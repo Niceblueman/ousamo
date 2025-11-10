@@ -61,7 +61,7 @@ export const companyData = {
       label: "Chaudronniers & Soudeurs",
       value: "70+",
       icon: "Users",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/placeholder.svg",
       description: "Une équipe hautement qualifiée et expérimentée en soudure et chaudronnerie",
       details: {
         title: "Notre Force Humaine",
@@ -80,7 +80,7 @@ export const companyData = {
       label: "Postes de Soudure",
       value: "21",
       icon: "Zap",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/placeholder.svg",
       description: "Infrastructure technologique moderne pour une production d'excellence",
       details: {
         title: "Capacité de Production",
@@ -99,7 +99,7 @@ export const companyData = {
       label: "Années d'Expertise",
       value: "10+",
       icon: "Award",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/placeholder.svg",
       description: "Une décennie de réussite et d'innovation dans la chaudronnerie",
       details: {
         title: "Expérience Reconnue",
@@ -118,7 +118,7 @@ export const companyData = {
       label: "Domaines Clés",
       value: "3",
       icon: "Target",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/placeholder.svg",
       description: "Trois domaines d'excellence couvrant tous vos besoins industriels",
       details: {
         title: "Nos Spécialités",

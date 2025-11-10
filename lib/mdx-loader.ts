@@ -46,11 +46,11 @@ export async function getRealisations(): Promise<RealisationMeta[]> {
         description: data.description || "",
         category: data.category || "Général",
         year: data.year || new Date().getFullYear(),
-        image: data.image || "/placeholder.svg?height=400&width=600",
+        image: data.image || "/placeholder.svg",
         images:
           data.images && data.images.length > 0
             ? data.images
-            : [data.image] || ["/placeholder.svg?height=400&width=600"],
+            : [data.image] || ["/placeholder.svg"],
         stats: data.stats || [],
         highlights: data.highlights || [],
         content: htmlContent,
