@@ -121,7 +121,7 @@ export function AppleStatsCard({ id, label, value, image, description, details, 
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed inset-4 md:inset-12 lg:inset-20 bg-white dark:bg-slate-800 rounded-3xl shadow-2xl z-50 overflow-auto"
+              className="fixed inset-4 md:inset-12 lg:inset-20 bg-white dark:bg-slate-800 rounded-3xl shadow-2xl z-50 overflow-auto w-fit mx-auto"
             >
               <div className="relative max-w-2xl mx-auto">
                 {/* Close Button */}

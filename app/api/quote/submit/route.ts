@@ -3,7 +3,7 @@ import { cookies } from "next/headers"
 import { type NextRequest, NextResponse } from "next/server"
 
 const resendApiKey = process.env.RESEND_API_KEY
-const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || "support@ousamo.com"
+const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || "support@ousamo.sarl"
 
 export async function POST(request: NextRequest) {
   try {

@@ -38,8 +38,37 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 sm:py-0">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">OUSAMO</h1>
+        {/* Logo with Industrial Animation */}
+        <motion.div
+          className="flex flex-col items-center justify-center"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
+          <motion.img
+            src="/hero_logo.svg"
+            alt="OUSAMO Logo"
+            className="w-24 h-24 mr-6 sm:w-32 sm:h-32 lg:w-40 lg:h-40"
+            animate={{
+              filter: [
+                "brightness(1) drop-shadow(0 0 10px rgba(59, 130, 246, 0.5))",
+                "brightness(1.2) drop-shadow(0 0 20px rgba(59, 130, 246, 0.8))",
+                "brightness(1) drop-shadow(0 0 10px rgba(59, 130, 246, 0.5))",
+              ]
+            }}
+            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          />
+          <h3 className="text-4xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+            <motion.span
+              animate={{
+                textShadow: [
+                  "0 0 10px rgba(59, 130, 246, 0.5)",
+                  "0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.5)",
+                  "0 0 10px rgba(59, 130, 246, 0.5)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            >
+              OUSAMO
+            </motion.span>
+          </h3>
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 font-light">
             L'Art de la Conception Métallique
           </p>
@@ -48,7 +77,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
           className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed"
         >
           De l'acier à l'innovation, nous donnons vie à vos projets industriels les plus ambitieux.
@@ -57,7 +86,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
         >
           <Link href="/realisations">
@@ -66,9 +95,11 @@ export function Hero() {
               <ArrowRight size={20} />
             </button>
           </Link>
+          <Link href="/quote">
           <button className="px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-gray-400 text-gray-300 hover:bg-gray-800/50 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded-lg font-semibold transition-all duration-200 active:scale-95 w-full sm:w-auto">
             Demander un Devis
           </button>
+          </Link>
         </motion.div>
       </div>
 
