@@ -1,0 +1,127 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "title": "Type de Service",
+      "description": "Sélectionnez le type de service nécessaire pour votre projet",
+      "multiSelect": false,
+      "options": [
+        {
+          "id": "construction",
+          "icon": "Building2",
+          "title": "Construction Métallique",
+          "subtitle": "Structures en acier et charpentes",
+          "details": "Conception et réalisation de structures métalliques de haute qualité. Idéal pour les projets de construction industrielle, les ponts, les charpentes de bâtiments et les structures complexes en acier."
+        },
+        {
+          "id": "industrial",
+          "icon": "Factory",
+          "title": "Travaux Industriels",
+          "subtitle": "Solutions pour secteur industriel",
+          "details": "Travaux spécialisés pour le secteur industriel incluant la fabrication de pièces complexes, l'usinage, le soudage haute performance et les solutions d'ingénierie sur mesure."
+        },
+        {
+          "id": "decoration",
+          "icon": "Sparkles",
+          "title": "Travaux de Décoration",
+          "subtitle": "Éléments décoratifs et artistiques",
+          "details": "Création de pièces décoratives et artistiques en métal. Rampes d'escalier design, portails, sculptures métalliques et éléments architecturaux qui allient esthétique et fonctionnalité."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Type de Projet",
+      "description": "Quel est le type de votre projet",
+      "multiSelect": false,
+      "options": [
+        {
+          "id": "new",
+          "icon": "Plus",
+          "title": "Nouveau Projet",
+          "subtitle": "Construction de zéro",
+          "details": "Un projet entièrement nouveau sans base existante. Nous gérons la conception complète, la fabrication et l'installation de votre structure métallique."
+        },
+        {
+          "id": "renovation",
+          "icon": "Wrench",
+          "title": "Rénovation",
+          "subtitle": "Amélioration existante",
+          "details": "Amélioration et modernisation de structures existantes. Renforcement, mise à jour ou transformation de vos installations métalliques actuelles."
+        },
+        {
+          "id": "maintenance",
+          "icon": "Shield",
+          "title": "Maintenance",
+          "subtitle": "Entretien et réparation",
+          "details": "Services d'entretien régulier, réparations et interventions d'urgence sur vos structures métalliques pour assurer leur durabilité et sécurité."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Délai de Réalisation",
+      "description": "Dans quel délai avez-vous besoin du projet",
+      "multiSelect": false,
+      "options": [
+        {
+          "id": "urgent",
+          "icon": "Zap",
+          "title": "Urgent",
+          "subtitle": "1 à 2 mois",
+          "details": "Vous avez besoin de votre projet rapidement. Nous optimisons nos ressources pour respecter un délai court tout en maintenant notre qualité exceptionnelle."
+        },
+        {
+          "id": "normal",
+          "icon": "Clock",
+          "title": "Standard",
+          "subtitle": "3 à 6 mois",
+          "details": "Un délai standard qui nous permet de planifier efficacement, assurer la qualité optimale et intégrer votre projet dans nos calendriers de production."
+        },
+        {
+          "id": "flexible",
+          "icon": "Calendar",
+          "title": "Flexible",
+          "subtitle": "6 mois et plus",
+          "details": "Vous avez une flexibilité sur le délai. Cela nous permet d'optimiser les coûts, d'améliorer la qualité et de planifier efficacement les ressources."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Budget Estimé",
+      "description": "Quelle est votre enveloppe budgétaire",
+      "multiSelect": false,
+      "options": [
+        {
+          "id": "budget-small",
+          "icon": "Euro",
+          "title": "Petit Budget",
+          "subtitle": "Moins de 10 000€",
+          "details": "Projets de petite à moyenne envergure. Idéal pour des structures simples, des réparations ou des éléments décoratifs de dimensions modérées."
+        },
+        {
+          "id": "budget-medium",
+          "icon": "CreditCard",
+          "title": "Budget Moyen",
+          "subtitle": "10 000€ - 50 000€",
+          "details": "Projets de taille moyenne incluant des structures plus complexes, des installations industrielles ou des ensembles composés de plusieurs éléments."
+        },
+        {
+          "id": "budget-large",
+          "icon": "TrendingUp",
+          "title": "Budget Important",
+          "subtitle": "50 000€ - 200 000€",
+          "details": "Projets d'envergure avec structures complexes, haute performance requise. Incluant ingénierie poussée et mise en œuvre complète."
+        },
+        {
+          "id": "budget-enterprise",
+          "icon": "Building",
+          "title": "Projet d'Envergure",
+          "subtitle": "200 000€+",
+          "details": "Projets majeurs de grande complexité. Solutions sur mesure avec équipes dédiées, support complet et gestion de projet exhaustive."
+        }
+      ]
+    }
+  ]
+}
