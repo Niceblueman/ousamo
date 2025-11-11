@@ -28,7 +28,8 @@ export function Hero() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/hero.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/dmkxk0zjk/video/upload/v1762820086/stock-footage-riyadh-saudi-arabia-oct-drone-aerial-footage-of-industrial-steel-structure-building-under_pykjth.webm" type="video/webm" />
+        <source src="https://res.cloudinary.com/dmkxk0zjk/video/upload/v1762820086/stock-footage-riyadh-saudi-arabia-oct-drone-aerial-footage-of-industrial-steel-structure-building-under_pykjth.mp4" type="video/mp4" />
       </video>
 
       {/* Dark overlay for better text readability */}
