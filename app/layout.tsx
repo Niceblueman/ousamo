@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://ousamo.com",
+    url: "https://ousamo.sarl",
     siteName: "OUSAMO",
     title: "OUSAMO - Construction Métallique & Équipements Industriels",
     description: "OUSAMO spécialiste en construction métallique, travaux industriels et décoration métallique",

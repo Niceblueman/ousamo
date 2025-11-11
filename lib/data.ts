@@ -14,8 +14,8 @@ export const companyData = {
     contact: {
       phone: "05.28.32.41.12",
       fax: "05.28.32.41.11",
-      website: "www.ousamo.com",
-      email: "contact@ousamo.ma",
+      website: "www.ousamo.sarl",
+      email: "contact@ousamo.sarl",
       address: "Rue Casablanca N°22 21 TASSILA Doheira EUJHADIA",
     },
   },

@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
             Authorization: `Bearer ${resendApiKey}`,
           },
           body: JSON.stringify({
-            from: "devis@ousamo.com",
+            from: "devis@ousamo.sarl",
             to: email,
             subject: "Confirmation de votre demande de devis - OUSAMO",
             html: `
@@ -125,7 +125,7 @@ export async function POST(request: NextRequest) {
             Authorization: `Bearer ${resendApiKey}`,
           },
           body: JSON.stringify({
-            from: "devis@ousamo.com",
+            from: "devis@ousamo.sarl",
             to: adminEmail,
             subject: `Nouvelle demande de devis - ${companyName}`,
             html: `
