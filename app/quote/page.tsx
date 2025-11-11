@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from "framer-motion"
 import { QuoteStepComponent } from "@/components/quote-step"
 import { QuoteForm, type FormData } from "@/components/quote-form"
 import { type QuoteStep, loadQuoteData } from "@/lib/quote-utils"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Home } from "lucide-react"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import Link from "next/link"
 
 export default function QuotePage() {
   const [steps, setSteps] = useState<QuoteStep[]>([])
@@ -82,6 +83,25 @@ export default function QuotePage() {
 
   return (
     <main ref={containerRef} className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900 overflow-hidden">
+      {/* Back to Home Button */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="fixed top-6 left-6 z-50"
+      >
+        <Link href="/">
+          <motion.button
+            className="flex items-center gap-2 px-4 py-2 bg-slate-800/80 backdrop-blur-sm hover:bg-slate-700/80 text-white rounded-lg font-medium border border-slate-700 transition-all"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Home className="w-4 h-4" />
+            <span className="hidden sm:inline">Accueil</span>
+          </motion.button>
+        </Link>
+      </motion.div>
+
       <AnimatePresence mode="wait">
         {currentStep <= steps.length && step ? (
           <QuoteStepComponent

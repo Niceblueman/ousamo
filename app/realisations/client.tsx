@@ -3,10 +3,31 @@
 import { RealisationCard } from "@/components/realisation-card"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { motion } from "framer-motion"
+import Link from "next/link"
+import { Home } from "lucide-react"
 
 export default function RealisationsClient({ realisations }) {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 py-12 md:py-20">
+      {/* Back to Home Button */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="fixed top-6 left-6 z-50"
+      >
+        <Link href="/">
+          <motion.button
+            className="flex items-center gap-2 px-4 py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-700/90 text-slate-900 dark:text-white rounded-lg font-medium border border-slate-200 dark:border-slate-700 transition-all shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Home className="w-4 h-4" />
+            <span className="hidden sm:inline">Accueil</span>
+          </motion.button>
+        </Link>
+      </motion.div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
