@@ -13,12 +13,39 @@ export default function QuotePage() {
   const [steps, setSteps] = useState<QuoteStep[]>([])
   const [currentStep, setCurrentStep] = useState(1)
   const [selections, setSelections] = useState<Record<number, string>>({})
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
-    loadQuoteData().then((data) => setSteps(data.steps))
+    const loadData = async () => {
+      try {
+        setIsLoading(true)
+        setError(null)
+        
+        // Add timeout to prevent hanging (5 seconds should be plenty)
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("Timeout: Data loading took too long")), 5000)
+        )
+        
+        const dataPromise = loadQuoteData()
+        const data = await Promise.race([dataPromise, timeoutPromise]) as QuoteData
+        
+        if (data && data.steps && Array.isArray(data.steps) && data.steps.length > 0) {
+          setSteps(data.steps)
+        } else {
+          throw new Error("Invalid data structure or empty steps")
+        }
+      } catch (err) {
+        console.error("Error loading quote data:", err)
+        setError("Erreur lors du chargement. Veuillez rafraîchir la page.")
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadData()
   }, [])
 
   const handleSelectOption = (optionId: string) => {
@@ -61,7 +88,7 @@ export default function QuotePage() {
     }
   }
 
-  if (steps.length === 0) {
+  if (isLoading || steps.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-950 to-slate-900">
         <div className="text-center">
@@ -73,6 +100,15 @@ export default function QuotePage() {
             <div className="w-12 h-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full" />
           </motion.div>
           <p className="text-slate-400 mt-4">Chargement...</p>
+          {error && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-red-400 mt-4 text-sm"
+            >
+              {error}
+            </motion.p>
+          )}
         </div>
       </div>
     )
