@@ -11,17 +11,57 @@ export async function POST(request: NextRequest) {
 
     const { companyName, email, phone, description, budget, selections } = body
 
-    const cookieStore = await cookies()
-    const supabase = createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll()
+    // Validate required fields
+    if (!companyName || !email || !phone || !description || !budget) {
+      console.error("[Quote Submit] Missing required fields:", { companyName, email, phone, description, budget })
+      return NextResponse.json(
+        { error: "Missing required fields: companyName, email, phone, description, budget" },
+        { status: 400 },
+      )
+    }
+
+    // Validate selections
+    if (!selections || typeof selections !== "object" || Object.keys(selections).length === 0) {
+      console.error("[Quote Submit] Missing or invalid selections:", selections)
+      return NextResponse.json(
+        { error: "Missing or invalid selections. Please complete all steps." },
+        { status: 400 },
+      )
+    }
+
+    // Validate environment variables
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      console.error("[Quote Submit] Missing Supabase environment variables")
+      return NextResponse.json(
+        { error: "Server configuration error: Missing database credentials" },
+        { status: 500 },
+      )
+    }
+
+    let supabase
+    try {
+      const cookieStore = await cookies()
+      supabase = createServerClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!,
+        {
+          cookies: {
+            getAll() {
+              return cookieStore.getAll()
+            },
+            setAll(cookiesToSet) {
+              cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options))
+            },
+          },
         },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options))
-        },
-      },
-    })
+      )
+    } catch (supabaseError) {
+      console.error("[Quote Submit] Supabase client creation error:", supabaseError)
+      return NextResponse.json(
+        { error: "Database connection error" },
+        { status: 500 },
+      )
+    }
 
     const stepTitles: Record<number, string> = {
       1: "Type de Service",
@@ -30,9 +70,19 @@ export async function POST(request: NextRequest) {
       4: "Budget Estimé",
     }
 
-    const selectedOptions = Object.entries(selections)
+    // Normalize selections keys to numbers
+    const normalizedSelections: Record<number, string> = {}
+    Object.entries(selections).forEach(([key, value]) => {
+      const numKey = Number.parseInt(key, 10)
+      if (!isNaN(numKey) && value) {
+        normalizedSelections[numKey] = String(value)
+      }
+    })
+
+    const selectedOptions = Object.entries(normalizedSelections)
       .map(([stepId, optionId]) => {
-        return `${stepTitles[Number.parseInt(stepId)]}: ${optionId}`
+        const stepNum = Number.parseInt(stepId, 10)
+        return `${stepTitles[stepNum] || `Step ${stepId}`}: ${optionId}`
       })
       .join("\n")
 
@@ -43,18 +93,29 @@ export async function POST(request: NextRequest) {
         email,
         phone,
         description,
-        service_type: selections[1],
-        project_type: selections[2],
-        timeline: selections[3],
-        budget_range: selections[4],
+        service_type: normalizedSelections[1] || null,
+        project_type: normalizedSelections[2] || null,
+        timeline: normalizedSelections[3] || null,
+        budget_range: normalizedSelections[4] || null,
         status: "pending",
       })
       .select()
       .single()
 
     if (dbError) {
-      console.error("[v0] Database error:", dbError)
-      return NextResponse.json({ error: "Failed to save quote request" }, { status: 500 })
+      console.error("[Quote Submit] Database error:", {
+        message: dbError.message,
+        details: dbError.details,
+        hint: dbError.hint,
+        code: dbError.code,
+      })
+      return NextResponse.json(
+        {
+          error: "Failed to save quote request",
+          details: process.env.NODE_ENV === "development" ? dbError.message : undefined,
+        },
+        { status: 500 },
+      )
     }
 
     if (resendApiKey) {
@@ -178,7 +239,16 @@ export async function POST(request: NextRequest) {
       { status: 200 },
     )
   } catch (error) {
-    console.error("[v0] Quote submission error:", error)
-    return NextResponse.json({ error: "Failed to process quote request" }, { status: 500 })
+    console.error("[Quote Submit] Unexpected error:", {
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    })
+    return NextResponse.json(
+      {
+        error: "Failed to process quote request",
+        details: process.env.NODE_ENV === "development" && error instanceof Error ? error.message : undefined,
+      },
+      { status: 500 },
+    )
   }
 }

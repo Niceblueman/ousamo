@@ -79,10 +79,28 @@ export default function QuotePage() {
         }),
       })
 
-      if (!response.ok) throw new Error("Submission failed")
+      const data = await response.json()
+
+      if (!response.ok) {
+        console.error("[Quote] API Error:", {
+          status: response.status,
+          statusText: response.statusText,
+          error: data.error,
+          body: data,
+        })
+        throw new Error(data.error || `HTTP ${response.status}: ${response.statusText}`)
+      }
+
+      // Success - form component will handle showing success message
+      console.log("[Quote] Submission successful:", data)
     } catch (error) {
-      console.error("[v0] Form submission error:", error)
-      alert("Erreur lors de l'envoi du formulaire. Veuillez réessayer.")
+      console.error("[Quote] Form submission error:", error)
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Erreur lors de l'envoi du formulaire. Veuillez réessayer."
+      alert(errorMessage)
+      throw error // Re-throw so form component can handle it
     } finally {
       setIsSubmitting(false)
     }
