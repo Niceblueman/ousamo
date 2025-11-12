@@ -37,7 +37,7 @@ export default function Home() {
       <VisionSection />
       <ContactSection />
       <Footer />
-      <ThemeSwitcher />
+      {/* <ThemeSwitcher /> */}
       <LanguageSwitcher />
     </main>
   )

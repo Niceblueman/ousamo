@@ -83,7 +83,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed"
         >
-          De l'acier à l'innovation, nous donnons vie à vos projets industriels les plus ambitieux.
+          {t("hero.mission")}
         </motion.p>
 
         <motion.div

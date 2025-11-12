@@ -11,7 +11,11 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
     <NextThemesProvider
       {...props}
       storageKey="ousamo-theme"
-      enableColorScheme={false}
+      attribute="class"
+      defaultTheme="dark"
+      themes={["dark", "dark-blue", "dark-amber"]}
+      enableSystem={false}
+      disableTransitionOnChange={false}
     >
       {children}
     </NextThemesProvider>

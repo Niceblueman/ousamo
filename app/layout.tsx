@@ -64,25 +64,24 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  const theme = localStorage.getItem('ousamo-theme') || 'dark';
+                  // Only set language, let next-themes handle theme
                   const lang = localStorage.getItem('ousamo-language') || (navigator.language && navigator.language.startsWith('en') ? 'en' : 'fr');
-                  document.documentElement.className = theme + ' scroll-smooth';
                   document.documentElement.lang = lang;
+                  // Add scroll-smooth class
+                  if (!document.documentElement.className.includes('scroll-smooth')) {
+                    document.documentElement.className = (document.documentElement.className + ' scroll-smooth').trim();
+                  }
                 } catch (e) {
-                  document.documentElement.className = 'dark scroll-smooth';
                   document.documentElement.lang = 'fr';
+                  if (!document.documentElement.className.includes('scroll-smooth')) {
+                    document.documentElement.className = (document.documentElement.className + ' scroll-smooth').trim();
+                  }
                 }
               })();
             `,
           }}
         />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          themes={["dark", "dark-blue", "dark-amber"]}
-          enableSystem={false}
-          disableTransitionOnChange={false}
-        >
+        <ThemeProvider>
           <LanguageProvider>
             {children}
           </LanguageProvider>
