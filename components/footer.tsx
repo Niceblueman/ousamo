@@ -1,5 +1,7 @@
 "use client"
 
+import { Download } from "lucide-react"
+
 export function Footer() {
   return (
     <footer className="bg-slate-900 text-gray-300 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
@@ -79,11 +81,19 @@ export function Footer() {
           </div>
           <div>
             <h4 className="text-white font-semibold mb-4 text-sm sm:text-base">Informations</h4>
-            <ul className="space-y-2 text-xs sm:text-sm text-gray-400">
+            <ul className="space-y-2 text-xs sm:text-sm text-gray-400 mb-4">
               <li>Créée en 2014</li>
               <li>SARL au capital de 2M Dhs</li>
               <li>Basée au Maroc</li>
             </ul>
+            <a
+              href="/tax-fiscal-marocain.pdf"
+              download
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+            >
+              <Download className="w-4 h-4" />
+              Tax Fiscal Marocain
+            </a>
           </div>
         </div>
         <div className="border-t border-slate-800 pt-8 text-center text-xs sm:text-sm text-gray-400">

@@ -9,6 +9,12 @@ import { ThemeSwitcher } from "@/components/theme-switcher"
 const StatsCounter = dynamic(() => import("@/components/stats-counter").then(mod => ({ default: mod.StatsCounter })), {
   loading: () => <div className="min-h-[400px]" />,
 })
+const ClientsPartnersSection = dynamic(() => import("@/components/clients-partners-section").then(mod => ({ default: mod.ClientsPartnersSection })), {
+  loading: () => <div className="min-h-[300px]" />,
+})
+const CertificatesSection = dynamic(() => import("@/components/certificates-section").then(mod => ({ default: mod.CertificatesSection })), {
+  loading: () => <div className="min-h-[400px]" />,
+})
 const VisionSection = dynamic(() => import("@/components/vision-section").then(mod => ({ default: mod.VisionSection })), {
   loading: () => <div className="min-h-[400px]" />,
 })
@@ -25,6 +31,8 @@ export default function Home() {
       <Hero />
       <ServicesGrid />
       <StatsCounter />
+      <ClientsPartnersSection />
+      <CertificatesSection />
       <VisionSection />
       <ContactSection />
       <Footer />
