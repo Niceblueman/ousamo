@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion"
 import { companyData } from "@/lib/data"
+import { useLanguage } from "@/components/language-provider"
 
 export function VisionSection() {
+  const { t } = useLanguage()
   return (
     <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-6xl mx-auto">
@@ -14,9 +16,9 @@ export function VisionSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-slate-900 mb-4 sm:mb-6">Notre Vision</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-slate-900 mb-4 sm:mb-6">{t("vision.title")}</h2>
             <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-              {companyData.vision.description}
+              {t("vision.description")}
             </p>
             <h3 className="text-lg sm:text-xl font-semibold text-slate-900 mb-4">Nos Principes</h3>
             <ul className="space-y-2 sm:space-y-3">

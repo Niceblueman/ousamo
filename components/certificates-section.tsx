@@ -3,8 +3,10 @@
 import { motion } from "framer-motion"
 import { Award, CheckCircle2 } from "lucide-react"
 import { companyData } from "@/lib/data"
+import { useLanguage } from "@/components/language-provider"
 
 export function CertificatesSection() {
+  const { t } = useLanguage()
   return (
     <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
       <div className="max-w-7xl mx-auto">
@@ -26,10 +28,10 @@ export function CertificatesSection() {
             <Award className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 dark:text-blue-400" />
           </motion.div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-3 sm:mb-4">
-            Certifications & Standards
+            {t("certificates.title")}
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Conformité aux normes industrielles et certifications de qualité
+            {t("certificates.subtitle")}
           </p>
         </motion.div>
 

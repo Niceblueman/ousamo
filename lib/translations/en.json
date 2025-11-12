@@ -1,0 +1,72 @@
+{
+  "common": {
+    "download": "Download",
+    "readMore": "Read more",
+    "contact": "Contact",
+    "about": "About",
+    "services": "Services",
+    "company": "Company",
+    "information": "Information"
+  },
+  "hero": {
+    "tagline": "The Art of Metal Design",
+    "cta": "Discover our Services"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Custom metallurgical solutions for all your industrial needs",
+    "construction": {
+      "title": "Metal construction",
+      "description": "Metal framework, Cladding and roofing, Shelters, Canopies, Mezzanines, Tanks, Barriers, and more."
+    },
+    "industrial": {
+      "title": "Stainless steel industrial work",
+      "description": "Hygiene, production equipment, food processing machines, truck outfitting."
+    },
+    "decoration": {
+      "title": "Decoration work",
+      "description": "Stainless steel decoration, professional kitchens, laser cutting."
+    }
+  },
+  "stats": {
+    "title": "Our Strength in Numbers",
+    "subtitle": "Human and technical resources for your excellence projects"
+  },
+  "clients": {
+    "title": "Our Partners & Clients",
+    "subtitle": "Trusted companies that trust us"
+  },
+  "certificates": {
+    "title": "Certifications & Standards",
+    "subtitle": "Compliance with industrial standards and quality certifications"
+  },
+  "vision": {
+    "title": "Our Vision",
+    "description": "At OUSAMO, we aspire to become a major player in the field of general boiler making and metal construction, by expanding our presence in large national and international markets."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are here to answer all your questions",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "requestQuote": "Request a Free Quote"
+  },
+  "footer": {
+    "description": "Metallurgical workshop specialized in metal construction and industrial equipment manufacturing.",
+    "created": "Founded in 2014",
+    "capital": "SARL with capital of 2M Dhs",
+    "location": "Based in Morocco",
+    "taxFiscal": "Moroccan Tax Fiscal",
+    "rights": "All rights reserved"
+  },
+  "quote": {
+    "title": "Request a Quote",
+    "subtitle": "Fill out the form below to get a personalized quote"
+  },
+  "realisations": {
+    "title": "Our Projects",
+    "subtitle": "Discover our projects and achievements"
+  }
+}
+

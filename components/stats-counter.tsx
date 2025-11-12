@@ -3,8 +3,10 @@
 import { motion } from "framer-motion"
 import { companyData } from "@/lib/data"
 import { AppleStatsCard } from "./apple-stats-card"
+import { useLanguage } from "@/components/language-provider"
 
 export function StatsCounter() {
+  const { t } = useLanguage()
   return (
     <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
       <div className="max-w-7xl mx-auto">
@@ -23,7 +25,7 @@ export function StatsCounter() {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Notre Force en Chiffres
+            {t("stats.title")}
           </motion.h2>
           <motion.p
             className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto"
@@ -32,7 +34,7 @@ export function StatsCounter() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Ressources humaines et techniques pour vos projets d'excellence
+            {t("stats.subtitle")}
           </motion.p>
         </motion.div>
 

@@ -4,8 +4,10 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useRef } from "react"
+import { useLanguage } from "@/components/language-provider"
 
 export function Hero() {
+  const { t } = useLanguage()
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -71,7 +73,7 @@ export function Hero() {
             </motion.span>
           </h3>
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 font-light">
-            L'Art de la Conception Métallique
+            {t("hero.tagline")}
           </p>
         </motion.div>
 
@@ -92,13 +94,13 @@ export function Hero() {
         >
           <Link href="/realisations">
             <button className="px-6 sm:px-8 py-2.5 sm:py-3 bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 text-white rounded-lg font-semibold flex items-center gap-2 transition-all duration-200 active:scale-95 w-full sm:w-auto justify-center">
-              Découvrez Nos Réalisations
+              {t("realisations.title")}
               <ArrowRight size={20} />
             </button>
           </Link>
           <Link href="/quote">
           <button className="px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-gray-400 text-gray-300 hover:bg-gray-800/50 focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded-lg font-semibold transition-all duration-200 active:scale-95 w-full sm:w-auto">
-            Demander un Devis
+            {t("quote.title")}
           </button>
           </Link>
         </motion.div>

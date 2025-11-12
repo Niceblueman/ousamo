@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
+import { LanguageProvider } from "@/components/language-provider"
 import "./globals.css"
 
 const geist = Geist({ 
@@ -56,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
         <script
           dangerouslySetInnerHTML={{
@@ -64,9 +65,12 @@ export default function RootLayout({
               (function() {
                 try {
                   const theme = localStorage.getItem('ousamo-theme') || 'dark';
+                  const lang = localStorage.getItem('ousamo-language') || (navigator.language && navigator.language.startsWith('en') ? 'en' : 'fr');
                   document.documentElement.className = theme + ' scroll-smooth';
+                  document.documentElement.lang = lang;
                 } catch (e) {
                   document.documentElement.className = 'dark scroll-smooth';
+                  document.documentElement.lang = 'fr';
                 }
               })();
             `,
@@ -79,7 +83,9 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange={false}
         >
-          {children}
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

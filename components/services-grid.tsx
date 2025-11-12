@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion"
 import { companyData } from "@/lib/data"
+import { useLanguage } from "@/components/language-provider"
 
 export function ServicesGrid() {
+  const { t } = useLanguage()
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,10 +36,10 @@ export function ServicesGrid() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">
-            Nos Domaines de Compétence
+            {t("services.title")}
           </h2>
           <p className="text-base sm:text-lg text-gray-600 px-2">
-            Trois axes stratégiques pour répondre à vos besoins industriels
+            {t("services.subtitle")}
           </p>
         </motion.div>
 

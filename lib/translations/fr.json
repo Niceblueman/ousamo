@@ -1,0 +1,72 @@
+{
+  "common": {
+    "download": "Télécharger",
+    "readMore": "Lire plus",
+    "contact": "Contact",
+    "about": "À propos",
+    "services": "Services",
+    "company": "Entreprise",
+    "information": "Informations"
+  },
+  "hero": {
+    "tagline": "L'Art de la Conception Métallique",
+    "cta": "Découvrir nos Services"
+  },
+  "services": {
+    "title": "Nos Services",
+    "subtitle": "Solutions métallurgiques sur mesure pour tous vos besoins industriels",
+    "construction": {
+      "title": "Construction métallique",
+      "description": "Charpente métallique, Bardages et couvertures, Abris, Auvents, Mezzanines, Citernes, Barrières, et plus."
+    },
+    "industrial": {
+      "title": "Travaux Industriels inoxydables",
+      "description": "Hygiène, équipements de production, machines agroalimentaires, aménagement camions."
+    },
+    "decoration": {
+      "title": "Travaux de décoration",
+      "description": "Décoration inoxydable, cuisines professionnelles, découpe laser."
+    }
+  },
+  "stats": {
+    "title": "Notre Force en Chiffres",
+    "subtitle": "Ressources humaines et techniques pour vos projets d'excellence"
+  },
+  "clients": {
+    "title": "Nos Partenaires & Clients",
+    "subtitle": "Des entreprises de confiance qui nous font confiance"
+  },
+  "certificates": {
+    "title": "Certifications & Standards",
+    "subtitle": "Conformité aux normes industrielles et certifications de qualité"
+  },
+  "vision": {
+    "title": "Notre Vision",
+    "description": "Chez OUSAMO, nous avons l'ambition de devenir un acteur majeur dans le domaine de la chaudronnerie générale et de la construction métallique, en élargissant notre présence sur de grands marchés nationaux et internationaux."
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes là pour répondre à toutes vos questions",
+    "phone": "Téléphone",
+    "email": "Email",
+    "address": "Adresse",
+    "requestQuote": "Demander un Devis Gratuit"
+  },
+  "footer": {
+    "description": "Atelier métallurgique spécialisé en construction métallique et fabrication d'équipements industriels.",
+    "created": "Créée en 2014",
+    "capital": "SARL au capital de 2M Dhs",
+    "location": "Basée au Maroc",
+    "taxFiscal": "Tax Fiscal Marocain",
+    "rights": "Tous droits réservés"
+  },
+  "quote": {
+    "title": "Demander un Devis",
+    "subtitle": "Remplissez le formulaire ci-dessous pour obtenir un devis personnalisé"
+  },
+  "realisations": {
+    "title": "Nos Réalisations",
+    "subtitle": "Découvrez nos projets et réalisations"
+  }
+}
+

@@ -22,10 +22,17 @@ export function ThemeSwitcher() {
 
   React.useEffect(() => {
     if (mounted && theme) {
-      // Ensure theme class is applied and preserve scroll-smooth
+      // Ensure theme class is applied and preserve scroll-smooth and language
       const html = document.documentElement
-      const currentClasses = html.className.split(' ').filter(c => c !== 'dark' && c !== 'dark-blue' && c !== 'dark-amber' && c !== 'scroll-smooth')
+      const lang = html.lang || 'fr'
+      const currentClasses = html.className.split(' ').filter(c => 
+        c !== 'dark' && 
+        c !== 'dark-blue' && 
+        c !== 'dark-amber' && 
+        c !== 'scroll-smooth'
+      )
       html.className = [theme, 'scroll-smooth', ...currentClasses].filter(Boolean).join(' ')
+      html.lang = lang
     }
   }, [theme, mounted])
 
@@ -55,6 +62,13 @@ export function ThemeSwitcher() {
                   onClick={() => {
                     setTheme(t.value)
                     setIsOpen(false)
+                    // Force update to ensure theme is applied
+                    setTimeout(() => {
+                      const html = document.documentElement
+                      const lang = html.lang || 'fr'
+                      html.className = [t.value, 'scroll-smooth'].filter(Boolean).join(' ')
+                      html.lang = lang
+                    }, 0)
                   }}
                   className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all ${
                     theme === t.value

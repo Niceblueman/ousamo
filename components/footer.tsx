@@ -1,8 +1,10 @@
 "use client"
 
 import { Download } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 
 export function Footer() {
+  const { t } = useLanguage()
   return (
     <footer className="bg-slate-900 text-gray-300 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
       <div className="max-w-6xl mx-auto">
@@ -10,11 +12,11 @@ export function Footer() {
           <div>
             <h3 className="text-white font-bold text-lg mb-4">OUSAMO</h3>
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-              Atelier métallurgique spécialisé en construction métallique et fabrication d'équipements industriels.
+              {t("footer.description")}
             </p>
           </div>
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm sm:text-base">Services</h4>
+            <h4 className="text-white font-semibold mb-4 text-sm sm:text-base">{t("common.services")}</h4>
             <ul className="space-y-2 text-xs sm:text-sm">
               <li>
                 <a
@@ -43,14 +45,14 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm sm:text-base">Entreprise</h4>
+            <h4 className="text-white font-semibold mb-4 text-sm sm:text-base">{t("common.company")}</h4>
             <ul className="space-y-2 text-xs sm:text-sm">
               <li>
                 <a
                   href="#"
                   className="hover:text-blue-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1"
                 >
-                  À propos
+                  {t("common.about")}
                 </a>
               </li>
               <li>
@@ -58,7 +60,7 @@ export function Footer() {
                   href="/realisations"
                   className="hover:text-blue-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1"
                 >
-                  Nos réalisations
+                  {t("realisations.title")}
                 </a>
               </li>
               <li>
@@ -66,7 +68,7 @@ export function Footer() {
                   href="/quote"
                   className="hover:text-blue-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1"
                 >
-                  Demander un Devis
+                  {t("quote.title")}
                 </a>
               </li>
               <li>
@@ -74,17 +76,17 @@ export function Footer() {
                   href="#"
                   className="hover:text-blue-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1"
                 >
-                  Contact
+                  {t("common.contact")}
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm sm:text-base">Informations</h4>
+            <h4 className="text-white font-semibold mb-4 text-sm sm:text-base">{t("common.information")}</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-gray-400 mb-4">
-              <li>Créée en 2014</li>
-              <li>SARL au capital de 2M Dhs</li>
-              <li>Basée au Maroc</li>
+              <li>{t("footer.created")}</li>
+              <li>{t("footer.capital")}</li>
+              <li>{t("footer.location")}</li>
             </ul>
             <a
               href="/tax-fiscal-marocain.pdf"
@@ -92,12 +94,12 @@ export function Footer() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900"
             >
               <Download className="w-4 h-4" />
-              Tax Fiscal Marocain
+              {t("footer.taxFiscal")}
             </a>
           </div>
         </div>
         <div className="border-t border-slate-800 pt-8 text-center text-xs sm:text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} OUSAMO. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} OUSAMO. {t("footer.rights")}.</p>
         </div>
       </div>
     </footer>

@@ -5,8 +5,10 @@ import { useState } from "react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { companyData } from "@/lib/data"
 import Image from "next/image"
+import { useLanguage } from "@/components/language-provider"
 
 export function ClientsPartnersSection() {
+  const { t } = useLanguage()
   const [isHovered, setIsHovered] = useState(false)
 
   // Duplicate the clients array for seamless infinite scroll
@@ -24,10 +26,10 @@ export function ClientsPartnersSection() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-3 sm:mb-4">
-            Nos Partenaires & Clients
+            {t("clients.title")}
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Des entreprises de confiance qui nous font confiance
+            {t("clients.subtitle")}
           </p>
         </motion.div>
 

@@ -4,6 +4,7 @@ import dynamic from "next/dynamic"
 import { Hero } from "@/components/hero"
 import { ServicesGrid } from "@/components/services-grid"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
 // Lazy load below-the-fold components for better initial load performance
 const StatsCounter = dynamic(() => import("@/components/stats-counter").then(mod => ({ default: mod.StatsCounter })), {
@@ -37,6 +38,7 @@ export default function Home() {
       <ContactSection />
       <Footer />
       <ThemeSwitcher />
+      <LanguageSwitcher />
     </main>
   )
 }
