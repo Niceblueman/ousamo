@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/database.sqlite"
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  name       String?
+  image      String?
+  googleId   String?   @unique @map("google_id")
+  isAdmin    Boolean   @default(false) @map("is_admin")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  
+  accounts   Account[]
+  sessions   Session[]
+
+  @@index([email])
+  @@index([googleId])
+  @@map("users")
+}
+
+model Account {
+  id                Int     @id @default(autoincrement())
+  userId            Int     @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refreshToken      String? @map("refresh_token")
+  accessToken       String? @map("access_token")
+  expiresAt         Int?    @map("expires_at")
+  tokenType         String? @map("token_type")
+  scope             String?
+  idToken           String? @map("id_token")
+  sessionState      String? @map("session_state")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id
+  sessionToken String   @unique @map("session_token")
+  userId       Int      @map("user_id")
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([sessionToken])
+  @@index([userId])
+  @@index([expires])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+  @@map("verification_tokens")
+}
+
+model QuoteRequest {
+  id          Int      @id @default(autoincrement())
+  companyName String   @map("company_name")
+  email       String
+  phone       String
+  description String?
+  serviceType String?  @map("service_type")
+  projectType String?  @map("project_type")
+  timeline    String?
+  budgetRange String?  @map("budget_range")
+  status      String   @default("pending")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@index([email])
+  @@index([createdAt])
+  @@index([status])
+  @@map("quote_requests")
+}
+
+model NewsletterSubscription {
+  id             Int       @id @default(autoincrement())
+  email          String    @unique
+  subscribedAt   DateTime  @default(now()) @map("subscribed_at")
+  status         String    @default("active")
+  unsubscribedAt DateTime? @map("unsubscribed_at")
+  source         String    @default("website")
+
+  @@index([email])
+  @@index([status])
+  @@map("newsletter_subscriptions")
+}
+
+model GoogleTracking {
+  id            Int      @id @default(autoincrement())
+  advertisingId String   @unique @map("advertising_id")
+  clientId      String?  @map("client_id")
+  sessionId     String?  @map("session_id")
+  firstSeen     DateTime @default(now()) @map("first_seen")
+  lastSeen      DateTime @default(now()) @map("last_seen")
+  visitCount    Int      @default(1) @map("visit_count")
+
+  @@index([advertisingId])
+  @@map("google_tracking")
+}

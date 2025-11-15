@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { QuoteStepComponent } from "@/components/quote-step"
 import { QuoteForm, type FormData } from "@/components/quote-form"
-import { type QuoteStep, loadQuoteData } from "@/lib/quote-utils"
+import { type QuoteStep, type QuoteData, loadQuoteData } from "@/lib/quote-utils"
 import { ChevronDown, Home } from "lucide-react"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import Link from "next/link"
@@ -198,7 +198,7 @@ export default function QuotePage() {
         </motion.div>
       )}
 
-      <ThemeSwitcher />
+      {/* <ThemeSwitcher /> */}
     </main>
   )
 }

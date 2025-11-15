@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
+import { CookieConsent } from "@/components/cookie-consent"
 import "./globals.css"
 
 const geist = Geist({ 
@@ -84,6 +85,7 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             {children}
+            <CookieConsent />
           </LanguageProvider>
         </ThemeProvider>
       </body>

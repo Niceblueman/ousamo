@@ -2,12 +2,18 @@
 
 import { Download } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import { NewsletterSubscribe } from "@/components/newsletter-subscribe"
 
 export function Footer() {
   const { t } = useLanguage()
   return (
     <footer className="bg-slate-900 text-gray-300 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
       <div className="max-w-6xl mx-auto">
+        {/* Newsletter Section */}
+        <div className="mb-12">
+          <NewsletterSubscribe />
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <h3 className="text-white font-bold text-lg mb-4">OUSAMO</h3>

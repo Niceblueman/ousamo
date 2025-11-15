@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import type { QuoteOption } from "@/lib/quote-utils"
 import * as Icons from "lucide-react"
 import { useState } from "react"
@@ -20,10 +20,7 @@ export function QuoteOptionCard({ option, isSelected, onSelect }: QuoteOptionCar
   return (
     <>
       <motion.div
-        onClick={() => {
-          onSelect(option.id)
-          setIsExpanded(true)
-        }}
+        onClick={() => setIsExpanded(true)}
         className={`relative p-6 rounded-2xl cursor-pointer transition-all ${
           isSelected
             ? "bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg ring-2 ring-blue-400"
@@ -49,43 +46,56 @@ export function QuoteOptionCard({ option, isSelected, onSelect }: QuoteOptionCar
       </motion.div>
 
       {/* Expanded Detail Modal */}
-      {isExpanded && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setIsExpanded(false)}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 flex items-center justify-center p-4"
-        >
+      <AnimatePresence>
+        {isExpanded && (
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            onClick={(e) => e.stopPropagation()}
-            className="bg-slate-900 rounded-2xl p-8 max-w-lg w-full border border-slate-700 shadow-2xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsExpanded(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 flex items-center justify-center p-4"
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 rounded-lg bg-blue-500/20">
-                {IconComponent && <IconComponent className="w-8 h-8 text-blue-400" />}
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-white">{option.title}</h2>
-                <p className="text-slate-400">{option.subtitle}</p>
-              </div>
-            </div>
-
-            <p className="text-slate-300 leading-relaxed mb-6">{option.details}</p>
-
-            <button
-              onClick={() => setIsExpanded(false)}
-              className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-slate-900 rounded-2xl p-8 max-w-lg w-full border border-slate-700 shadow-2xl"
             >
-              Fermer
-            </button>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 rounded-lg bg-blue-500/20">
+                  {IconComponent && <IconComponent className="w-8 h-8 text-blue-400" />}
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-white">{option.title}</h2>
+                  <p className="text-slate-400">{option.subtitle}</p>
+                </div>
+              </div>
+
+              <p className="text-slate-300 leading-relaxed mb-6">{option.details}</p>
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setIsExpanded(false)}
+                  className="flex-1 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-colors"
+                >
+                  Fermer
+                </button>
+                <button
+                  onClick={() => {
+                    onSelect(option.id)
+                    setIsExpanded(false)
+                  }}
+                  className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                >
+                  Sélectionner
+                </button>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </>
   )
 }

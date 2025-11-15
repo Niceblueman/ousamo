@@ -43,31 +43,22 @@ export function Hero() {
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 sm:py-0">
         {/* Logo with Industrial Animation */}
         <motion.div
-          className="flex flex-col items-center justify-center"
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
+          className="flex flex-col items-center justify-center">
           <motion.img
-            src="/hero_logo.svg"
+            src="/hero_logo_animated.svg"
             alt="OUSAMO Logo"
-            className="w-24 h-24 mr-6 sm:w-32 sm:h-32 lg:w-40 lg:h-40"
-            animate={{
-              filter: [
-                "brightness(1) drop-shadow(0 0 10px rgba(59, 130, 246, 0.5))",
-                "brightness(1.2) drop-shadow(0 0 20px rgba(59, 130, 246, 0.8))",
-                "brightness(1) drop-shadow(0 0 10px rgba(59, 130, 246, 0.5))",
-              ]
-            }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            className="w-32 h-32  sm:w-32 sm:h-32 lg:w-40 lg:h-40"
           />
-          <h3 className="text-4xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+          <h3 className="text-5xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 sm:mb-6 leading-tight font-sans">
             <motion.span
-              animate={{
-                textShadow: [
-                  "0 0 10px rgba(59, 130, 246, 0.5)",
-                  "0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.5)",
-                  "0 0 10px rgba(59, 130, 246, 0.5)",
-                ],
-              }}
-              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+              // animate={{
+              //   textShadow: [
+              //     "0 0 10px rgba(59, 130, 246, 0.5)",
+              //     "0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.5)",
+              //     "0 0 10px rgba(59, 130, 246, 0.5)",
+              //   ],
+              // }}
+              // transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
             >
               OUSAMO
             </motion.span>

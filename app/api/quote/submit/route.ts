@@ -1,6 +1,5 @@
-import { createServerClient } from "@supabase/ssr"
-import { cookies } from "next/headers"
 import { type NextRequest, NextResponse } from "next/server"
+import { prisma } from "@/lib/db"
 
 const resendApiKey = process.env.RESEND_API_KEY
 const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || "support@ousamo.sarl"
@@ -29,40 +28,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Validate environment variables
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-      console.error("[Quote Submit] Missing Supabase environment variables")
-      return NextResponse.json(
-        { error: "Server configuration error: Missing database credentials" },
-        { status: 500 },
-      )
-    }
-
-    let supabase
-    try {
-      const cookieStore = await cookies()
-      supabase = createServerClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.SUPABASE_SERVICE_ROLE_KEY!,
-        {
-          cookies: {
-            getAll() {
-              return cookieStore.getAll()
-            },
-            setAll(cookiesToSet) {
-              cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options))
-            },
-          },
-        },
-      )
-    } catch (supabaseError) {
-      console.error("[Quote Submit] Supabase client creation error:", supabaseError)
-      return NextResponse.json(
-        { error: "Database connection error" },
-        { status: 500 },
-      )
-    }
-
     const stepTitles: Record<number, string> = {
       1: "Type de Service",
       2: "Type de Projet",
@@ -86,37 +51,24 @@ export async function POST(request: NextRequest) {
       })
       .join("\n")
 
-    const { data: quoteRequest, error: dbError } = await supabase
-      .from("quote_requests")
-      .insert({
-        company_name: companyName,
-        email,
-        phone,
-        description,
-        service_type: normalizedSelections[1] || null,
-        project_type: normalizedSelections[2] || null,
-        timeline: normalizedSelections[3] || null,
-        budget_range: normalizedSelections[4] || null,
-        status: "pending",
-      })
-      .select()
-      .single()
-
-    if (dbError) {
-      console.error("[Quote Submit] Database error:", {
-        message: dbError.message,
-        details: dbError.details,
-        hint: dbError.hint,
-        code: dbError.code,
-      })
-      return NextResponse.json(
-        {
-          error: "Failed to save quote request",
-          details: process.env.NODE_ENV === "development" ? dbError.message : undefined,
+    try {
+      const quoteRequest = await prisma.quoteRequest.create({
+        data: {
+          companyName,
+          email,
+          phone,
+          description,
+          serviceType: normalizedSelections[1] || null,
+          projectType: normalizedSelections[2] || null,
+          timeline: normalizedSelections[3] || null,
+          budgetRange: normalizedSelections[4] || null,
+          status: "pending",
         },
-        { status: 500 },
-      )
-    }
+      })
+
+      if (!quoteRequest) {
+        throw new Error("Failed to create quote request")
+      }
 
     if (resendApiKey) {
       try {
@@ -169,7 +121,7 @@ export async function POST(request: NextRequest) {
                     <p>Cordialement,<br><strong>L'équipe OUSAMO</strong></p>
                     
                     <div class="footer">
-                      <p>© 2025 OUSAMO. Tous droits réservés.<br>Numéro de suivi: ${quoteRequest.id}</p>
+                      <p>© 2025 OUSAMO. Tous droits réservés.<br>Numéro de suivi: #${quoteRequest.id}</p>
                     </div>
                   </div>
                 </body>
@@ -216,7 +168,7 @@ export async function POST(request: NextRequest) {
                       ${description ? `<div class="detail"><span class="detail-label">Description:</span> ${description}</div>` : ""}
                       <div class="detail"><span class="detail-label">Sélections:</span><br>${selectedOptions.replace(/\n/g, "<br>")}</div>
                       <div class="detail"><span class="detail-label">Date:</span> ${new Date().toLocaleString("fr-FR")}</div>
-                      <div class="detail"><span class="detail-label">ID Suivi:</span> ${quoteRequest.id}</div>
+                      <div class="detail"><span class="detail-label">ID Suivi:</span> #${quoteRequest.id}</div>
                     </div>
                   </div>
                 </body>
@@ -230,14 +182,24 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    return NextResponse.json(
-      {
-        success: true,
-        message: "Quote request submitted successfully",
-        quoteId: quoteRequest.id,
-      },
-      { status: 200 },
-    )
+      return NextResponse.json(
+        {
+          success: true,
+          message: "Quote request submitted successfully",
+          quoteId: quoteRequest.id,
+        },
+        { status: 200 },
+      )
+    } catch (dbError) {
+      console.error("[Quote Submit] Database error:", dbError)
+      return NextResponse.json(
+        {
+          error: "Failed to save quote request",
+          details: process.env.NODE_ENV === "development" && dbError instanceof Error ? dbError.message : undefined,
+        },
+        { status: 500 },
+      )
+    }
   } catch (error) {
     console.error("[Quote Submit] Unexpected error:", {
       error: error instanceof Error ? error.message : String(error),
